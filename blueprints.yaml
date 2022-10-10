@@ -1,12 +1,36 @@
 name: DotEnv
-version: 1.0.0
-description: Loads environment variables from .gravenv file.
+version: 2.0.0
+description: Loads environment variables from .gravenv file. 
 icon: empire
 author:
-  name: Jakob Kruse
-  email: jkonliner@gmail.com
-  url: https://github.com/ralla
-homepage: https://github.com/ralla/grav-plugin-dotenv
+  name: Team Grav
+  email: devs@getgrav.org
+  url: https://getgrav.org
+homepage: https://github.com/getgrav/grav-plugin-dotenv
 keywords: dotenv, env, environment
-bugs: https://github.com/ralla/grav-plugin-dotenv/issues
+bugs: https://github.com/getgrav/grav-plugin-dotenv/issues
 license: MIT
+
+dependencies:
+  - { name: grav, version: '>=1.7' }
+
+form:
+  validation: loose
+  fields:
+    enabled:
+      type: toggle
+      label: PLUGIN_ADMIN.PLUGIN_STATUS
+      highlight: 1
+      default: 0
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+    filename:
+      type: text
+      label: Environment Filename
+      default: '.gravenv'
+      validate:
+        required: true
+

@@ -7,6 +7,12 @@ use Grav\Common\Plugin;
 use RocketTheme\Toolbox\Event\Event;
 use Dotenv\Dotenv;
 
+/**
+ * Forked from https://github.com/Ralla/grav-plugin-dotenv
+ * 
+ * Class DotenvPlugin
+ * @package Grav\Plugin
+ */
 class DotenvPlugin extends Plugin
 {
     /**
@@ -34,7 +40,7 @@ class DotenvPlugin extends Plugin
     public function onPluginsInitialized()
     {
         $filename = $this->grav['config']->get('plugins.dotenv.filename');
-        $this->dotenv = new Dotenv(GRAV_ROOT, $filename ?? '.gravenv');
+        $this->dotenv = Dotenv::createUnsafeImmutable(GRAV_ROOT, $filename ?? '.gravenv');
 
         try {
             $this->init();
@@ -52,42 +58,36 @@ class DotenvPlugin extends Plugin
     /**
      * Init all environment settings from .gravenv
      */
-    protected function init()
+    protected function init(): void
     {
-        foreach ($this->dotenv->load() as $setting) {
-            $settingData = $this->getSetting($setting);
-
-            $this->grav['config']->join($settingData['grav_pointer'], [
-                $settingData['key'] => getenv($settingData['env_name']),
-            ]);
+        foreach ($this->dotenv->safeLoad() as $key => $setting) {
+            $settingData = $this->getSetting($key, $setting);
+            $this->grav['config']->join($settingData['grav_pointer'], [$settingData['env_name'] => getenv($key)]);
         }
     }
 
     /**
      * Format setting from .gravenv
      *
-     * @param  string   $setting
+     * @param string $name
+     * @param string $setting
      *
      * @return array
      */
-    protected function getSetting($setting)
+    protected function getSetting(string $name, $value): array
     {
-        if (strpos($setting, '=') !== false) {
-            list($name, $value) = array_map('trim', explode('=', $setting, 2));
-        }
 
         // Name is not dot notated, it should be.
         if (strpos($name, '.') === false) {
-            return;
+            return [];
         }
 
         $parts = explode('.', $name);
+        $env_name = array_pop($parts);
 
         return [
-            'grav_pointer'  => implode('.', array_slice($parts, 0, -1)),
-            'env_name'      => implode('.', $parts),
-            'key'           => end($parts),
-            'value'         => $value,
+            'grav_pointer'  => implode('.', $parts),
+            'env_name'      => $env_name,
         ];
     }
 }

@@ -5,13 +5,16 @@
     "keywords": ["cms","flat-file cms","flat cms","flatfile cms","php","dotenv"],
     "license": "MIT",
     "require": {
-         "adbario/php-dot-notation": "^2.0",
-         "vlucas/phpdotenv": "^2.4"
+         "vlucas/phpdotenv": "^5.0"
     },
     "authors": [
         {
             "name": "Jakob Kruse",
             "email": "jkonliner@gmail.com"
+        },
+        {
+            "name": "Team Grav",
+            "email": "devs@getgrav.org"
         }
     ]
 }
