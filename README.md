@@ -1,6 +1,4 @@
-# PROJECT IS ABANDONED
-Grav core now supports .env
-https://learn.getgrav.org/17/advanced/multisite-setup#server-based-configuration-overrides
+# NOTE: This project has been forked up by Team Grav as the original author abandoned it
 
 # Grav .env Plugin
 
