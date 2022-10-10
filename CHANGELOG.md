@@ -1,3 +1,10 @@
+# v2.0.1
+## 10/10/2022
+
+1. [](#bugfix)
+   * Fix a malformed date in changelog breaking the parsing
+   * Update README.md with original author Attribution
+
 # v2.0.0
 ## 10/10/2022
 
@@ -7,7 +14,7 @@
     * Modified plugin to use new `Immutable` variable structure and `loadSafe()` to avoid missing env file
 
 # v1.0.0
-## 14/02/2019
+## 02/14/2019
 
 1. [](#new)
     * Initial commit.

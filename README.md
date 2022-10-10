@@ -1,10 +1,10 @@
-# NOTE: This project has been forked up by Team Grav as the original author abandoned it
-
 # Grav .env Plugin
 
 Simple [Grav](http://github.com/getgrav/grav) plugin that provides a simple way to load environment variables from .gravenv and override existing Grav configuration.
 
-Uses [adbario/php-dot-notation](https://github.com/adbario/php-dot-notation) and [vlucas/phpdotenv](https://github.com/vlucas/phpdotenv).
+Uses [vlucas/phpdotenv](https://github.com/vlucas/phpdotenv) library for handling the env files.
+
+> Note: this plugin was forked from [Jakob Kruse's original version](https://github.com/Ralla/grav-plugin-dotenv) after development was abandoned and is now maintained by the Grav Team.
 
 # Installation
 
@@ -54,4 +54,4 @@ system.debugger.enabled=true
 If you would prefer to use a file other than `.gravenv` (eg. `.env`) you can do the following:
 
 1. Copy `user/plugins/dotenv/dotenv.yaml` to `user/config/plugins/dotenv.yaml`
-1. Edit `user/config/plugins/dotenv.yaml` and change the `filename` option.
+1. Edit `user/config/plugins/dotenv.yaml` and change the `filename:` option.
