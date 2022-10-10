@@ -1,5 +1,5 @@
 # v2.0.0
-## mm/dd/2022
+## 10/10/2022
 
 1. [](#new)
     * Taken over from abandoned repo: https://github.com/Ralla/grav-plugin-dotenv
