@@ -3,11 +3,11 @@
         'name' => 'ralla/grav-plugin-dotenv',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'efda57764fbcc349eabdd74722bede86607cb256',
+        'reference' => '3f779563976f44a156b40e61efafbddebf66d994',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'dev' => true,
+        'dev' => false,
     ),
     'versions' => array(
         'graham-campbell/result-type' => array(
@@ -31,7 +31,7 @@
         'ralla/grav-plugin-dotenv' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'efda57764fbcc349eabdd74722bede86607cb256',
+            'reference' => '3f779563976f44a156b40e61efafbddebf66d994',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
