@@ -1,3 +1,10 @@
+# v2.1.0
+## 10/11/2022
+
+1. [](#new)
+   * Refactored logic to use `Config::merge()` rather than individual `Config::join()` calls
+   * Normalize data to better support `boolean`, `int`, `float`, and `null` types
+
 # v2.0.1
 ## 10/10/2022
 

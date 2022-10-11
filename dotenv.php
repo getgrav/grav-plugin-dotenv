@@ -3,7 +3,9 @@ namespace Grav\Plugin;
 
 require __DIR__ . '/vendor/autoload.php';
 
+use Grav\Common\Config\Config;
 use Grav\Common\Plugin;
+use Grav\Common\Utils;
 use RocketTheme\Toolbox\Event\Event;
 use Dotenv\Dotenv;
 
@@ -56,38 +58,31 @@ class DotenvPlugin extends Plugin
     }
 
     /**
-     * Init all environment settings from .gravenv
+     * Init all environment settings from env file
      */
     protected function init(): void
     {
-        foreach ($this->dotenv->safeLoad() as $key => $setting) {
-            $settingData = $this->getSetting($key, $setting);
-            $this->grav['config']->join($settingData['grav_pointer'], [$settingData['env_name'] => getenv($key)]);
-        }
+        /** @var Config $config */
+        $config = $this->grav['config'];
+        $data = $this->dotenv->safeLoad();
+
+        $normalized = $this->normalizeData($data);
+        $env_data = Utils::arrayUnflattenDotNotation($normalized, '.');
+        $config->merge($env_data);
     }
 
     /**
-     * Format setting from .gravenv
-     *
-     * @param string $name
-     * @param string $setting
-     *
+     * @param array $data
      * @return array
      */
-    protected function getSetting(string $name, $value): array
+    protected function normalizeData(array $data): array
     {
-
-        // Name is not dot notated, it should be.
-        if (strpos($name, '.') === false) {
-            return [];
+        foreach ($data as $key => $value) {
+            if (in_array($value, ['false', 'true', 'null']) || is_numeric($value)) {
+                $data[$key] = json_decode($value);
+            }
         }
-
-        $parts = explode('.', $name);
-        $env_name = array_pop($parts);
-
-        return [
-            'grav_pointer'  => implode('.', $parts),
-            'env_name'      => $env_name,
-        ];
+        return $data;
     }
+
 }
