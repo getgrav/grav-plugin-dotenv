@@ -1,5 +1,5 @@
 # v2.1.0
-## mm/dd/2022
+## 10/11/2022
 
 1. [](#new)
    * Refactored logic to use `Config::merge()` rather than individual `Config::join()` calls

@@ -1,6 +1,6 @@
 name: DotEnv
-version: 2.0.1
-description: Loads environment variables from .gravenv file. 
+version: 2.1.0
+description: Loads environment variables from env file
 icon: empire
 author:
   name: Team Grav
