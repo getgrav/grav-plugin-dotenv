@@ -1,5 +1,5 @@
 # v2.1.1
-## mm/dd/2022
+## 10/12/2022
 
 1. [](#improved)
    * Added support for `_DASH_` string in env keys as `-` is invaild and will throw exception
