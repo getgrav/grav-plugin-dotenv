@@ -49,6 +49,14 @@ system.twig.cache=false
 system.debugger.enabled=true
 ```
 
+NOTE: some plugins or YAML variables might contain dashes (`-`). These are not valid in env syntax, so you can replace any `-` with `_DASH_` and the plugin will convert them back to `-` after reading the file.
+
+For example, if you want to set a `active: false` to the configuration of the `lightbox-gallery` plugin you could put this in your config file:
+
+```
+plugins.lightbox_DASH_gallery.active=false
+```
+
 ## Using a Different Env File
 
 If you would prefer to use a file other than `.gravenv` (eg. `.env`) you can do the following:
