@@ -1,3 +1,10 @@
+# v2.1.1
+## 10/12/2022
+
+1. [](#improved)
+   * Added support for `_DASH_` string in env keys as `-` is invaild and will throw exception
+   * Modify priority for `onPluginsInitialized` to `100` as dotenv should run before other plugins
+
 # v2.1.0
 ## 10/11/2022
 
