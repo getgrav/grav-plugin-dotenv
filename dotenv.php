@@ -32,7 +32,7 @@ class DotenvPlugin extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'onPluginsInitialized' => ['onPluginsInitialized', 0],
+            'onPluginsInitialized' => ['onPluginsInitialized', 100],
         ];
     }
 
@@ -78,6 +78,11 @@ class DotenvPlugin extends Plugin
     protected function normalizeData(array $data): array
     {
         foreach ($data as $key => $value) {
+            if (Utils::contains($key, '_DASH_')) {
+                $data[str_replace('_DASH_', '-', $key)] = $value;
+                unset($data[$key]);
+            }
+
             if (in_array($value, ['false', 'true', 'null']) || is_numeric($value)) {
                 $data[$key] = json_decode($value);
             }
